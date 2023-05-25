@@ -24,6 +24,10 @@ class UsersController extends Controller
         $userFactory = new SearchResultFactories();
         $users = $userFactory->initializeUsers($keyword, $category, $updown, $gender, $role, $subjects);
         $subjects = Subjects::all();
+
+        $user = User::find(1)->subjects();
+        dd($user);
+
         return view('authenticated.users.search', compact('users', 'subjects'));
     }
 
@@ -38,4 +42,5 @@ class UsersController extends Controller
         $user->subjects()->sync($request->subjects);
         return redirect()->route('user.profile', ['id' => $request->user_id]);
     }
+
 }
