@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use DB;
 use Carbon\CarbonPeriod;
+use App\Http\Requests\BulletinBoard\RegisterFormRequest;
 
 
 use App\Models\Users\Subjects;
@@ -63,13 +64,13 @@ class RegisterController extends Controller
         return view('auth.register.register', compact('subjects','years','months','days'));
     }
 
-    public function registerPost(Request $request)
+    public function registerPost(RegisterFormRequest $request)
     {
 
 
         //バリデーション
         $validator = Validator::make($request->all(),[
-            'over_name' => 'required|string|max:10',
+            // 'over_name' => 'required|string|max:10',
             'under_name' => 'required|string|max:10',
             'over_name_kana' => 'required|string|max:30|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
             'under_name_kana' => 'required|string|max:30|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
@@ -110,7 +111,7 @@ class RegisterController extends Controller
                 'password' => bcrypt($request->password)
             ]);
             $user = User::findOrFail($user_get->id);
-            $user->subjects()->attach($subjects);//これがあると新規登録ができない
+            $user->subjects()->attach($subjects);//これがあると新規登録ができない時が...
             DB::commit();
             return view('auth.login.login');
         }catch(\Exception $e){
