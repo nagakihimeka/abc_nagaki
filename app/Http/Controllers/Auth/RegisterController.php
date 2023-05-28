@@ -70,18 +70,18 @@ class RegisterController extends Controller
 
         //バリデーション
         $validator = Validator::make($request->all(),[
-            // 'over_name' => 'required|string|max:10',
-            'under_name' => 'required|string|max:10',
-            'over_name_kana' => 'required|string|max:30|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
-            'under_name_kana' => 'required|string|max:30|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
-            'mail_address' => 'required|max:100|email:filter,dns|unique:users',
-            'sex' => 'required',
-            'old_year' => 'required',
-            'old_month' => 'required',
-            'old_day' => 'required',
-            'role' => 'required',
-            'password' => 'required|between:8,30',
-            'password-con' => 'required|between:8,30|same:password'
+            // // 'over_name' => 'required|string|max:10',
+            // 'under_name' => 'required|string|max:10',
+            // 'over_name_kana' => 'required|string|max:30|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
+            // 'under_name_kana' => 'required|string|max:30|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
+            // 'mail_address' => 'required|max:100|email:filter,dns|unique:users',
+            // 'sex' => 'required',
+            // 'old_year' => 'required',
+            // 'old_month' => 'required',
+            // 'old_day' => 'required',
+            // 'role' => 'required',
+            // 'password' => 'required|between:8,30',
+            // 'password-con' => 'required|between:8,30|same:password'
     ]);
         if ($validator->fails()) {
             return redirect()->route('registerView')

@@ -20,7 +20,6 @@ Route::get('/', function () {
 Route::group(['middleware' => ['guest']], function(){
     Route::namespace('Auth')->group(function(){
         Route::get('/register', 'RegisterController@registerView')->name('registerView');
-        Route::post('/register/', 'PostsController@postCreate')->name('post.create');
         Route::post('/register/post', 'RegisterController@registerPost')->name('registerPost');
         Route::get('/register/post', 'RegisterController@registerPost')->name('registerPost');
         Route::get('/login', 'LoginController@loginView')->name('loginView');
