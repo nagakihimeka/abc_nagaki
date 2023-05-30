@@ -20,6 +20,7 @@ class SubjectsTableSeeder extends Seeder
             'subject' => '数学',
              'id' => 3,
             'subject' => '英語',
+            
         ]);
     }
 }

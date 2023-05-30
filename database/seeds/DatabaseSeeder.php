@@ -17,5 +17,10 @@ class DatabaseSeeder extends Seeder
             'user_id'=>11,
             'subject_id'=>1
         ]);
+
+        $this->call([
+        UsersTableSeeder::class,
+        SubjectsTableSeeder::class,
+    ]);
     }
 }
