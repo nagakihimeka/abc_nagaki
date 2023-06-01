@@ -31,7 +31,7 @@ class RegisterFormRequest extends FormRequest
             'under_name_kana' => 'required|string|max:30|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
             'mail_address' => 'required|max:100|email:filter,dns|unique:users',
             'sex' => 'required|in:1,2,3',
-            'birth' => 'before:today | after:2000-01-01',
+            'birth' => 'required | before:today | after:2000-01-01 | date',
             'role' => 'required | in:1,2,3,4',
             'password' => 'required|between:8,30 | same:password-con'
         ];
@@ -74,11 +74,10 @@ class RegisterFormRequest extends FormRequest
             'sex.required' => '必ず選択してください',
             'sex.in' => '男性、女性、その他から選択してください',
 
-            'old_month.required' => '必ず入力してください',
-            'old_month.before_or_equal' => '今日までの日付で入力してください',
-            'old_month.after' => '2000年以降が有効です',
+            'birth.required' => '生年月日は必ず選択してください',
             'birth.before' => '今日までの日付で選択してください',
             'birth.after' => '2000年1月1日以降を選択してください',
+            'birth.date' => '有効な日付を選択してください',
 
             'role.required' => '役職は必ず選択してください',
             'role.in' => '教師(国語、数学,英語)または生徒を選択してください',
