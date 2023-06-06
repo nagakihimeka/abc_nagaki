@@ -21,7 +21,7 @@ class PostsController extends Controller
         $like = new Like;
         $post_comment = new Post;
 
-       
+
 
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')
