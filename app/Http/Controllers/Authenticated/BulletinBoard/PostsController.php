@@ -20,6 +20,9 @@ class PostsController extends Controller
         $categories = MainCategory::get();
         $like = new Like;
         $post_comment = new Post;
+
+       
+
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')
             ->where('post_title', 'like', '%'.$request->keyword.'%')
@@ -107,7 +110,6 @@ class PostsController extends Controller
         $like->like_user_id = $user_id;
         $like->like_post_id = $post_id;
         $like->save();
-
         return response()->json();
     }
 
