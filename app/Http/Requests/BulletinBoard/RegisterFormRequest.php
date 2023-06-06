@@ -71,6 +71,11 @@ class RegisterFormRequest extends FormRequest
             'under_name_kana.max' => 'メイは30文字以下で入力してください',
             'under_name_kana.max' => 'メイはカタカナで入力してくださき',
 
+            'mail_address.required' => 'メールアドレスは必ず入力してください',
+            'mail_address.max' => 'メールアドレスは100文字以下で入力してください',
+            'mail_address.email' => 'メール形式で入力してください',
+            'mail_address.unique' => 'すでに登録されているメールアドレスです',
+
             'sex.required' => '必ず選択してください',
             'sex.in' => '男性、女性、その他から選択してください',
 
