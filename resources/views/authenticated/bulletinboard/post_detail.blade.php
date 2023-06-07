@@ -7,11 +7,8 @@
         <div class="detail_inner_head">
           <!-- エラーメッセージ -->
             <div>
-            @if($errors->first('post_title'))
-            <span class="error_message">{{ $errors->first('post_title') }}</span>
-            @endif
-            @if($errors->first('post_body'))
-            <span class="error_message">{{ $errors->first('post_body') }}</span>
+            @if($errors->first('comment'))
+            <span class="error_message">{{ $errors->first('comment') }}</span>
             @endif
             </div>
            <!-- //エラーメッセージ -->

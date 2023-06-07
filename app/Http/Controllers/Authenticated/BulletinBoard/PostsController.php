@@ -11,6 +11,7 @@ use App\Models\Posts\PostComment;
 use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
+use App\Http\Requests\BulletinBoard\commentFormRequest;
 use Auth;
 
 class PostsController extends Controller
@@ -54,10 +55,12 @@ class PostsController extends Controller
     }
 
     public function postCreate(PostFormRequest $request){
+
         $post = Post::create([
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
-            'post' => $request->post_body
+            'post' => $request->post_body,
+
         ]);
         return redirect()->route('post.show');
     }
@@ -66,6 +69,7 @@ class PostsController extends Controller
         Post::where('id', $request->post_id)->update([
             'post_title' => $request->post_title,
             'post' => $request->post_body,
+
         ]);
         return redirect()->route('post.detail', ['id' => $request->post_id]);
     }
@@ -79,12 +83,13 @@ class PostsController extends Controller
         return redirect()->route('post.input');
     }
 
-    public function commentCreate(Request $request){
+    public function commentCreate(commentFormRequest $request){
         PostComment::create([
             'post_id' => $request->post_id,
             'user_id' => Auth::id(),
             'comment' => $request->comment
         ]);
+
         return redirect()->route('post.detail', ['id' => $request->post_id]);
     }
 

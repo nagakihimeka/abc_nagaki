@@ -64,12 +64,12 @@ class RegisterFormRequest extends FormRequest
             'over_name_kana.required' => 'セイは必ず入力してください',
             'over_name_kana.string' => 'セイは文字列で入力してください',
             'over_name_kana.max' => 'セイは30文字以下で入力してください',
-            'over_name_kana.max' => 'セイはカタカナで入力してください',
+            'over_name_kana.regex' => 'セイはカタカナで入力してください',
 
             'under_name_kana.required' => 'メイは必ず入力してください',
             'under_name_kana.string' => 'メイは文字列で入力してください',
             'under_name_kana.max' => 'メイは30文字以下で入力してください',
-            'under_name_kana.max' => 'メイはカタカナで入力してくださき',
+            'under_name_kana.regex' => 'メイはカタカナで入力してくださき',
 
             'mail_address.required' => 'メールアドレスは必ず入力してください',
             'mail_address.max' => 'メールアドレスは100文字以下で入力してください',

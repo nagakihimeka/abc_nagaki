@@ -26,6 +26,7 @@ class PostFormRequest extends FormRequest
         return [
             'post_title' => 'required | string | max:100',
             'post_body' => 'required|string|min:10|max:5000',
+            
         ];
     }
 
@@ -38,6 +39,7 @@ class PostFormRequest extends FormRequest
             'post_body.string' => '内容は文字列で入力してください。',
             'post_body.min' => '内容は10文字以上入力してください。',
             'post_body.max' => '最大文字数は5000文字です。',
+
         ];
     }
 }
