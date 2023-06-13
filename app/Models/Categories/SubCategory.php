@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Categories;
+namespace App\Http\Requests\BulletinBoard;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,6 +14,7 @@ class SubCategory extends Model
     ];
     public function mainCategory(){
         // リレーションの定義
+        return $this->belongsTo('App\Models\Categories\MainCategory');
     }
 
     public function posts(){

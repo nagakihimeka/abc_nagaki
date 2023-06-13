@@ -28,8 +28,6 @@ class PostFormRequest extends FormRequest
             'post_category_id' => 'required|Rule::in($sub_category)',
             'post_title' => 'required | string | max:100',
             'post_body' => 'required|string|min:10|max:5000',
-
-
         ];
     }
 
