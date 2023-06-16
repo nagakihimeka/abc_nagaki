@@ -38,10 +38,11 @@
       <ul>
         @foreach($categories as $category)
         <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
-
-        @foreach($categories->subCategories as $sub)
-        {{$sub->sub_category}}
-        @endforeach
+          <div class="sub_category">
+            @foreach($category->subCategories as $sub)
+            <li><a href="{{ route('post.category', ['id' => $sub->id]) }}">{{$sub->sub_category}}</a></li>
+            @endforeach
+          </div>
         @endforeach
       </ul>
       <ul>

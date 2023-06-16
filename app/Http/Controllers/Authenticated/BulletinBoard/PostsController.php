@@ -58,13 +58,24 @@ class PostsController extends Controller
         return view('authenticated.bulletinboard.post_create', compact('main_categories',));
     }
 
+    
+    public function postCategory($id) {
+        $post = Post::with('user', 'postComments')->get();
+
+        return redirect()->route('post.show');
+    }
+
     public function postCreate(PostFormRequest $request){
 
         $post = Post::create([
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
             'post' => $request->post_body,
-
+        ]);
+        //中間テーブルに保存
+        \DB::table('post_sub_categories')->insert([
+            'post_id' => $post->id,
+            'sub_category_id' => $request->post_category_id
         ]);
 
 
