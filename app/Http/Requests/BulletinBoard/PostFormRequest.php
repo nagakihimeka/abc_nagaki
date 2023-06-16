@@ -3,7 +3,7 @@
 namespace App\Http\Requests\BulletinBoard;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use App\Models\Categories\SubCategory;
 class PostFormRequest extends FormRequest
 {
     /**
@@ -23,9 +23,9 @@ class PostFormRequest extends FormRequest
      */
     public function rules()
     {
-        $sub_category = ['国語','数学','英語'];
+         $sub = SubCategory::get('sub_category');
         return [
-            'post_category_id' => 'required|Rule::in($sub_category)',
+            'post_category_id' => 'required | exists:sub_categories,id',
             'post_title' => 'required | string | max:100',
             'post_body' => 'required|string|min:10|max:5000',
         ];
@@ -34,7 +34,7 @@ class PostFormRequest extends FormRequest
     public function messages(){
         return [
             'post_category_id.required' => 'サブカテゴリーを選択してください',
-            'post_category_id.Rule::in' => '国語、数学、英語の中から選択してください',
+            'post_category_id.exists' => '国語、数学、英語の中から選択してください',
             'post_title.required' => 'タイトルは必ず入力してください',
             'post_title.string' => 'タイトルは文字列で入力してください',
             'post_title.max' => 'タイトルは100文字以内で入力してください。',
