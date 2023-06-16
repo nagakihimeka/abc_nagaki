@@ -13,6 +13,7 @@ use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
 use App\Http\Requests\BulletinBoard\commentFormRequest;
 use App\Http\Requests\BulletinBoard\MainCategoryRequest;
+use App\Http\Requests\BulletinBoard\SubCategoryRequest;
 use Auth;
 
 class PostsController extends Controller
@@ -52,6 +53,10 @@ class PostsController extends Controller
 
     public function postInput(){
         $main_categories = MainCategory::get();
+        $main = new MainCategory;
+
+
+
         return view('authenticated.bulletinboard.post_create', compact('main_categories'));
     }
 
@@ -63,6 +68,8 @@ class PostsController extends Controller
             'post' => $request->post_body,
 
         ]);
+
+
         return redirect()->route('post.show');
     }
 
@@ -80,13 +87,12 @@ class PostsController extends Controller
         return redirect()->route('post.show');
     }
     public function mainCategoryCreate(MainCategoryRequest $request){
-
-        MainCategory::create(['main_category' => $request->main_category_name]);
+        MainCategory::create(['main_category' => $request->main_category]);
         return redirect()->route('post.input');
     }
 
-    public function subCategoryCreate(Request $request) {
-        SubCategory::create(['main_category_id' => $request->main_category_id,'sub_category' => $request->sub_category_name]);
+    public function subCategoryCreate(SubCategoryRequest $request) {
+        SubCategory::create(['main_category_id' => $request->main_category_id,'sub_category' => $request->sub_category]);
         return redirect()->route('post.input');
 
     }

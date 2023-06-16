@@ -11,6 +11,10 @@
       <select class="w-100" form="postCreate" name="post_category_id">
         @foreach($main_categories as $main_category)
         <optgroup label="{{ $main_category->main_category }}"></optgroup>
+        @foreach($main_category->subCategories as $subCategory)
+        <option hidden></option>
+        <option value="{{$subCategory->id}}">{{$subCategory->sub_category}}</option>
+        @endforeach
         <!-- サブカテゴリー表示 -->
         </optgroup>
         @endforeach
@@ -38,24 +42,37 @@
   @can('admin')
   <div class="w-25 ml-auto mr-auto">
     <div class="category_area mt-5 p-5">
-      @if($errors->first('main_category_name'))
-      <span class="error_message">{{ $errors->first('main_category_name') }}</span>
+        <!-- エラーメッセージ -->
+      @if($errors->first('main_category'))
+      <span class="error_message">{{ $errors->first('main_category') }}</span>
       @endif
+        <!-- //エラーメッセージ -->
       <div class="">
         <p class="m-0">メインカテゴリー</p>
-        <input type="text" class="w-100" name="main_category_name" form="mainCategoryRequest">
+        <input type="text" class="w-100" name="main_category" form="mainCategoryRequest">
         <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="mainCategoryRequest">
       </div>
 
       <!-- サブカテゴリー追加 -->
       <div class="">
         <p class="m-0">サブカテゴリー</p>
+         <!-- エラーメッセージ -->
+        @if($errors->first('main_category_id'))
+        <span class="error_message">{{ $errors->first('main_category_id') }}</span>
+        @endif
+        <!-- //エラーメッセージ -->
         <select class="w-100" name="main_category_id" form="subCategoryRequest">
           @foreach($main_categories as $main_category)
-          <option value="{{$main_category->id}}">{{$main_category->main_category}}</option>
+          <option hidden></option>
+          <option value="{{$main_category->id}}" label="{{$main_category->main_category}}"></option>
           @endforeach
        </select>
-        <input type="text" class="w-100" name="sub_category_name" form="subCategoryRequest">
+        <!-- エラーメッセージ -->
+        @if($errors->first('sub_category'))
+        <span class="error_message">{{ $errors->first('sub_category') }}</span>
+        @endif
+        <!-- //エラーメッセージ -->
+        <input type="text" class="w-100" name="sub_category" form="subCategoryRequest">
         <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryRequest">
       </div>
 

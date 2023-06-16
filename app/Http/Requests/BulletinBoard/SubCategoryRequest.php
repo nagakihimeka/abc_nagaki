@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\BulletinBoard;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,7 +13,7 @@ class SubCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,13 +24,19 @@ class SubCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'main_category_id' => 'required |',
-            'sub_category_name' => 'required | max:100 | string | unique:sub_categories;'
+            'main_category_id' => 'required | exists:main_categories,id',
+            'sub_category' => 'required | max:100 | string | unique:sub_categories'
         ];
     }
 
     public function messages() {
         return [
+            'main_category_id.required' =>'必ず選択してください',
+            'main_category_id.exists' => '存在しないメインカテゴリーです',
+            'sub_category.required' => 'サブカテゴリーは入力必須です',
+            'sub_category.max' => 'サブカテゴリーは100文字以内で入力してください',
+            'sub_category.string' => 'サブカテゴリーは文字列で入力してください',
+            'sub_category.unique' => 'すでに登録されています'
 
         ];
     }
