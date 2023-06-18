@@ -58,9 +58,18 @@ class PostsController extends Controller
         return view('authenticated.bulletinboard.post_create', compact('main_categories',));
     }
 
-    
+
     public function postCategory($id) {
-        $post = Post::with('user', 'postComments')->get();
+
+        //  $category = new SubCategory;
+        //  $posts = $category->posts();
+
+      $user = SubCategory::find(1)->posts();
+        $posts = $user->id;
+        dd($user);
+
+
+
 
         return redirect()->route('post.show');
     }
