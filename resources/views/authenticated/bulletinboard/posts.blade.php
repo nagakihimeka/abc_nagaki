@@ -39,7 +39,7 @@
         <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
           <div class="sub_category">
             @foreach($category->subCategories as $sub)
-            <li><a href="{{ route('post.category', ['id' => $sub->id]) }}">{{$sub->sub_category}}</a></li>
+            <button type="submit" name="category_word" form="postSearchRequest" value="{{$sub->id}}">{{$sub->sub_category}}</button>
             @endforeach
           </div>
         @endforeach

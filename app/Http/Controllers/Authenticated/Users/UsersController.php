@@ -25,8 +25,9 @@ class UsersController extends Controller
         $users = $userFactory->initializeUsers($keyword, $category, $updown, $gender, $role, $subjects);
         $subjects = Subjects::all();
 
+
         // $user = User::find(1)->subjects()->get();
-        
+
 
         return view('authenticated.users.search', compact('users', 'subjects'));
     }

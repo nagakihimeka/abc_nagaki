@@ -26,14 +26,21 @@ class PostsController extends Controller
         $post_comment = new Post;
 
 
-
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')
             ->where('post_title', 'like', '%'.$request->keyword.'%')
             ->orWhere('post', 'like', '%'.$request->keyword.'%')->get();
         }else if($request->category_word){
             $sub_category = $request->category_word;
+            $posts = subCategory::WhereHas('posts', function($query) use ($sub_category){
+            $query->where('sub_category_id', $sub_category);
+             })->get();
+             dd($posts);
+
+
             $posts = Post::with('user', 'postComments')->get();
+
+
         }else if($request->like_posts){
             $likes = Auth::user()->likePostId()->get('like_post_id');
             $posts = Post::with('user', 'postComments')
@@ -59,20 +66,6 @@ class PostsController extends Controller
     }
 
 
-    public function postCategory($id) {
-
-        //  $category = new SubCategory;
-        //  $posts = $category->posts();
-
-      $user = SubCategory::find(1)->posts();
-        $posts = $user->id;
-        dd($user);
-
-
-
-
-        return redirect()->route('post.show');
-    }
 
     public function postCreate(PostFormRequest $request){
 
