@@ -5,14 +5,15 @@
   <div class="post_view w-75 mt-5">
     <p class="w-75 m-auto">投稿一覧</p>
     @foreach($posts as $post)
-    @foreach($post->user->subjects as $pos)
     <div class="post_area border w-75 m-auto p-3">
 
       <p><span>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p>
       <p><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
       <div class="post_bottom_area d-flex">
         <div class="d-flex post_status">
-          <div class="">{{ $pos->subject }}</div>
+        @foreach($post->user->subjects as $pos)
+            <div class="">{{ $pos->subject }}</div>
+            @endforeach
           <div class="mr-5">
             <i class="fa fa-comment"></i><span class="">{{$post_comment->commentCounts($post->id)->count()}}</span>
           </div>
@@ -27,7 +28,7 @@
       </div>
     </div>
     @endforeach
-    @endforeach
+
   </div>
 
   <div class="other_area border w-25">
@@ -52,6 +53,19 @@
       <ul>
 
       </ul>
+
+      <div class="search">
+        <div class="">検索条件の追加</div>
+      <div class="search">
+        <ul class="search_subject">
+          @foreach($subjects as $subject)
+          <li>
+            <label for="subject"><input type="checkbox" id="subject" name="subject" value="{{$subject->id}}" form="postSearchRequest">{{$subject->subject}}</label>
+          </li>
+          @endforeach
+        </ul>
+      </div>
+
     </div>
   </div>
   <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>

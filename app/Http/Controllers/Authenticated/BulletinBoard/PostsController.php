@@ -10,6 +10,7 @@ use App\Models\Posts\Post;
 use App\Models\Posts\PostComment;
 use App\Models\Posts\Like;
 use App\Models\Users\User;
+use App\Models\Users\Subjects;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
 use App\Http\Requests\BulletinBoard\commentFormRequest;
 use App\Http\Requests\BulletinBoard\MainCategoryRequest;
@@ -20,11 +21,13 @@ class PostsController extends Controller
 {
     public function show(Request $request){
         $posts = Post::with('user.subjects', 'postComments')->get();
+      
         $categories = MainCategory::get();
         $sub_categories = SubCategory::get();
         $like = new Like;
         $post_comment = new Post;
         $sub = User::with('subjects')->get();
+        $subjects = Subjects::get();
 
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')
@@ -45,7 +48,7 @@ class PostsController extends Controller
         }
 
 
-        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment','sub_categories','sub'));
+        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment','sub_categories','sub','subjects'));
     }
 
     public function postDetail($post_id){

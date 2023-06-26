@@ -7,6 +7,7 @@
         <div class="detail_inner_head">
           <!-- エラーメッセージ -->
             <div>
+              
             @if($errors->first('comment'))
             <span class="error_message">{{ $errors->first('comment') }}</span>
             @endif
