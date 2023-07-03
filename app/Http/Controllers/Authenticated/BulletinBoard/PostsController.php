@@ -21,13 +21,26 @@ class PostsController extends Controller
 {
     public function show(Request $request){
         $posts = Post::with('user.subjects', 'postComments')->get();
-      
         $categories = MainCategory::get();
         $sub_categories = SubCategory::get();
         $like = new Like;
         $post_comment = new Post;
         $sub = User::with('subjects')->get();
         $subjects = Subjects::get();
+
+
+
+        // if(!empty($request->subject)){
+        //     $subject = $request->subject;//配列で値は取得できてる
+        //     // dd($subject);
+        //     $users = User::WhereHas('subjects', function($query) use ($subject){
+        //         $query->where('subject_id', $subject);
+        //      })->pluck('id');
+
+        //     $posts = Post::whereIn('user_id',[$users])->get();
+
+        //     // 値が二つ以上だと投稿が取得できない
+        // }
 
         if(!empty($request->keyword)){
             $posts = Post::with('user', 'postComments')

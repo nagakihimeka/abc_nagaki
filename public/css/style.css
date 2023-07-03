@@ -235,3 +235,41 @@ li{
 .subject_inner{
   display:none;
 }
+
+
+summary {
+  position: relative;
+  list-style: none;
+  border-bottom: 1px solid #000;
+}
+
+
+summary::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 130px;
+  transform: translateY(-50%) rotate(-45deg);
+  transition: transform 0.5s;
+  font-size: 30px;
+  border: 1px solid #494949;
+  width: 10px;
+}
+summary::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  transition: transform 0.5s;
+  font-size: 30px;
+  border: 1px solid #494949;
+  width: 10px;
+}
+
+
+details[open] summary::before {
+  transform: rotate(45deg);
+}
+details[open] summary::after {
+  transform: rotate(-45deg);
+}

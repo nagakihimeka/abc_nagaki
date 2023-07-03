@@ -45,7 +45,7 @@
         <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
           <div class="sub_category">
             @foreach($category->subCategories as $sub)
-            <button type="submit" name="category_word" form="postSearchRequest" value="{{$sub->id}}">{{$sub->sub_category}}</button>
+            <button type="submit" name="category_word[]" form="postSearchRequest" value="{{$sub->id}}">{{$sub->sub_category}}</button>
             @endforeach
           </div>
         @endforeach
@@ -54,19 +54,28 @@
 
       </ul>
 
-      <div class="search">
-        <div class="">検索条件の追加</div>
-      <div class="search">
-        <ul class="search_subject">
-          @foreach($subjects as $subject)
-          <li>
-            <label for="subject"><input type="checkbox" id="subject" name="subject" value="{{$subject->id}}" form="postSearchRequest">{{$subject->subject}}</label>
-          </li>
-          @endforeach
-        </ul>
-      </div>
+      <details open class="search">
 
-    </div>
+        <summary class="">検索条件の追加<span class="search_icon"></span></summary>
+        <div class="search">
+          <div class="search_sex">
+            <p>性別</p>
+            <label for="men">男<input type="checkbox" value="1" id="men" form="postSearchRequest"></label>
+            <label for="woman">女<input type="checkbox" value="2" id="men" form="postSearchRequest"></label>
+          </div>
+          <div class="">
+            <p>権限</p>
+            <select name="" id=""></select>
+          </div>
+          <div class="search_subject">
+            <p class="">選択科目</p>
+            @foreach($subjects as $subject)
+              <label for="subject">{{$subject->subject}}<input type="checkbox" id="subject" name="subject[]" value="{{$subject->id}}" form="postSearchRequest"></label>
+            @endforeach
+          </div>
+        </div>
+
+    </details>
   </div>
   <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>
 </div>

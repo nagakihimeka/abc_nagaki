@@ -13,7 +13,7 @@ class SelectIdDetails implements DisplayUsers{
       $keyword = array($keyword);
     }
     if(is_null($gender)){
-      $gender = ['1', '2'];
+      $gender = ['1', '2','3'];
     }else{
       $gender = array($gender);
     }
@@ -29,7 +29,7 @@ class SelectIdDetails implements DisplayUsers{
       ->whereIn('role', $role);
     })
     ->whereHas('subjects', function($q) use ($subjects){
-      $q->where('subjects.id', $subjects);
+      $q->whereIn('subjects.id', $subjects);
     })
     ->orderBy('id', $updown)->get();
     return $users;
