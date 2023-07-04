@@ -31,16 +31,16 @@ class CalendarView{
     $html[] = '</thead>';
     $html[] = '<tbody>';
 
-    $weeks = $this->getWeeks();
+    $weeks = $this->getWeeks();//週カレンダーオブジェクトの配列を取得
 
     foreach($weeks as $week){
       $html[] = '<tr class="'.$week->getClassName().'">';
-      $days = $week->getDays();
+      $days = $week->getDays();//週カレンダーオブジェクトから、日カレンダーオブジェクトの配列を取得
       foreach($days as $day){
         $startDay = $this->carbon->format("Y-m-01");
         $toDay = $this->carbon->format("Y-m-d");
-        if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){
-          $html[] = '<td class="past-day border">';
+        if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){ //月初めより後で、今日よりも前の時
+          $html[] = '<td class="past-day border">';//グレー
         }else{
           $html[] = '<td class="border '.$day->getClassName().'">';
         }
@@ -54,7 +54,7 @@ class CalendarView{
     $html[] = '</table>';
     $html[] = '</div>';
 
-    return implode("", $html);
+    return implode("", $html);//値を結合し、文字列としてデータ取得するメソッド
   }
 
   protected function getWeeks(){
