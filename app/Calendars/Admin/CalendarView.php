@@ -8,6 +8,7 @@ class CalendarView{
 
   function __construct($date){
     $this->carbon = new Carbon($date);
+
   }
 
   public function getTitle(){
