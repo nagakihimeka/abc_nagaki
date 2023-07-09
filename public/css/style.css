@@ -67,13 +67,26 @@ li{
 }
 
 /* モーダル */
-.modal{
+.delete_modal{
     display: none;
     height: 100vh;
     position: fixed;
     top: 0;
     width: 100%;
 }
+
+.delete_modal_content {
+  background: #fff;
+    border: 5px solid #dee2e6;
+    left: 55%;
+    padding: 40px;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 300px;
+}
+
 .modal__bg{
     background: rgba(0,0,0,0.8);
     height: 100vh;
@@ -88,7 +101,10 @@ li{
     top: 50%;
     transform: translate(-50%,-50%);
     width: 60%;
+    height: 300px;
 }
+
+
 
 /* 掲示板 */
 .sub_categories{

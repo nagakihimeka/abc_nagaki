@@ -15,6 +15,10 @@ class CalendarView{
     return $this->carbon->format('Y年n月');
   }
 
+  public function getreserve(){
+    return $this->carbon->format('Y-n-d');
+  }
+
   function render(){
     $html = [];
     $html[] = '<div class="calendar text-center">';
@@ -60,10 +64,10 @@ class CalendarView{
             $reservePart = "リモ3部";
           }
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){//もし日付が過ぎたら
-            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">'.$reservePart.'</p>';//多分ここに受付終了入ると思う
+            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">'.$reservePart.'</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }else{
-            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
+            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" id="delete_date" style="font-size:12px" href=""" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }
         }else{
@@ -83,6 +87,13 @@ class CalendarView{
     $html[] = '</tbody>';
     $html[] = '</table>';
     $html[] = '</div>';
+
+    // モーダル/////////////////
+    $html[] =' <div class="delete_modal delete_modal_content" name="delete_modal">';
+    $html[] ='<button class="js-modal-close">閉じる</button>';
+    $html[] =  '<p class="m-auto p-0 w-75" style="font-size:12px" id="delete_day"></p>';
+    $html[] ='</div>';
+    // モーダル/////////////////
     $html[] = '<form action="/reserve/calendar" method="post" id="reserveParts">'.csrf_field().'</form>';
     $html[] = '<form action="/delete/calendar" method="post" id="deleteParts">'.csrf_field().'</form>';
 

@@ -8,14 +8,19 @@ use App\Calendars\General\CalendarView;
 use App\Models\Calendars\ReserveSettings;
 use App\Models\Calendars\Calendar;
 use App\Models\USers\User;
+use App\Calendars\General\CalendarWeekDay;
 use Auth;
 use DB;
 
 class CalendarsController extends Controller
 {
     public function show(){
+
         $calendar = new CalendarView(time());
-        return view('authenticated.calendar.general.calendar', compact('calendar'));
+        // $reserveDay = new CalendarWeekDay(time());
+        $reserve = User::with('reserveSettings')->get();
+
+        return view('authenticated.calendar.general.calendar', compact('calendar','reserve'));
     }
 
     public function reserve(Request $request){
@@ -34,5 +39,10 @@ class CalendarsController extends Controller
             DB::rollback();
         }
         return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
+    }
+
+    public function delete(Request $request) {
+        $reserve = User::with('reserveSettings')->first;
+
     }
 }
