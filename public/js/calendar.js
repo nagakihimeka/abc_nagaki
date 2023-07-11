@@ -8,8 +8,13 @@ $(function () {
     //日付取得
     var title = $(this).val();
     $("#delete_day").text(title);
+
+    var result = $(this).data('part');
+    console.log(result);
+    $(".delete_part").text(result);
     return false;
   });
+
 
   // 背景部分や閉じるボタン(js-modal-close)が押されたら発火
   $('.js-modal-close').on('click', function () {

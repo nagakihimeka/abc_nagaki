@@ -57,17 +57,17 @@ class CalendarView{
 
           $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
           if($reservePart == 1){
-            $reservePart = "リモも1部";
+            $reservePart = "リモ1部";
           }else if($reservePart == 2){
             $reservePart = "リモ2部";
           }else if($reservePart == 3){
             $reservePart = "リモ3部";
           }
           if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){//もし日付が過ぎたら
-            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">'.$reservePart.'</p>';
+            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px" >'.$reservePart.'</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }else{
-            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" id="delete_date" style="font-size:12px" href=""" value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
+            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" id="delete_date" data-part="'.$reservePart.'" style="font-size:12px"  value="'. $day->authReserveDate($day->everyDay())->first()->setting_reserve .'">'. $reservePart .'</button>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }
         }else{
@@ -90,8 +90,9 @@ class CalendarView{
 
     // モーダル/////////////////
     $html[] =' <div class="delete_modal delete_modal_content" name="delete_modal">';
-    $html[] ='<button class="js-modal-close">閉じる</button>';
     $html[] =  '<p class="m-auto p-0 w-75" style="font-size:12px" id="delete_day"></p>';
+    $html[] =  '<p class="m-auto p-0 w-75 delete_part" style="font-size:12px id="delete_part""></p>';
+    $html[] ='<button class="js-modal-close">閉じる</button>';
     $html[] ='</div>';
     // モーダル/////////////////
     $html[] = '<form action="/reserve/calendar" method="post" id="reserveParts">'.csrf_field().'</form>';
