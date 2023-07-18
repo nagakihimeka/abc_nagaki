@@ -289,3 +289,8 @@ details[open] summary::before {
 details[open] summary::after {
   transform: rotate(-45deg);
 }
+
+.day_part_flex {
+
+  display: flex;
+}

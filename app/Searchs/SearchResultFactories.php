@@ -25,5 +25,6 @@ class SearchResultFactories{
       $allUsers = new AllUsers();
     return $allUsers->resultUsers($keyword, $category, $updown, $gender, $role, $subjects);
     }
+
   }
 }

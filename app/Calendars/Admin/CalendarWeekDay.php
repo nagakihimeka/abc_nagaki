@@ -4,6 +4,7 @@ namespace App\Calendars\Admin;
 use Carbon\Carbon;
 use App\Models\Calendars\ReserveSettings;
 
+
 class CalendarWeekDay{
   protected $carbon;
 
@@ -28,16 +29,33 @@ class CalendarWeekDay{
     $one_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first();
     $two_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first();
     $three_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
+    // $one = ReserveSettings::with('users')->first()->users()->groupBy('reserve_setting_id')->count();
+    $one = ReserveSettings::withCount('users')->where('setting_reserve', $ymd)->where('setting_part', '1')->first();
+    $two = ReserveSettings::withCount('users')->where('setting_reserve', $ymd)->where('setting_part', '2')->first();
+    $three = ReserveSettings::withCount('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
+
+
 
     $html[] = '<div class="text-left">';
     if($one_part){
-      $html[] = '<p class="day_part m-0 pt-1">1部</p>';
+      $html[] = '<div class="day_part_flex">';
+      $html[] = '<a class="day_part m-0 pt-1" href="'.route('detail',['id'  => $one->id]).'">1部</a>';//ur Lに（$one->id.）を持たせる
+      $html[] = '<p class="day_part_count m-0 pt-1">'.$one->users_count.'</p>';//reserve_settingsの数が表示されてる
+      $html[] = '</div>';
+
     }
     if($two_part){
-      $html[] = '<p class="day_part m-0 pt-1">2部</p>';
+      $html[] = '<div class="day_part_flex">';
+      $html[] = '<a class="day_part m-0 pt-1" href="'.route('detail',['id'  => $two->id]).'">2部</a>';
+      $html[] = '<p class="day_part_count m-0 pt-1">'.$two->users_count.'</p>';
+       $html[] = '</div>';
+
     }
     if($three_part){
-      $html[] = '<p class="day_part m-0 pt-1">3部</p>';
+      $html[] = '<div class="day_part_flex">';
+      $html[] = '<a class="day_part m-0 pt-1" href="'.route('detail',['id'  => $three->id]).'">3部</a>';
+      $html[] = '<p class="day_part_count m-0 pt-1">'.$three->users_count.'</p>';
+       $html[] = '</div>';
     }
     $html[] = '</div>';
 

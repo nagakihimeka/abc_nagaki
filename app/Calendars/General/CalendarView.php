@@ -72,7 +72,7 @@ class CalendarView{
           }
         }else{
            if($startDay <= $day->everyDay() && $toDay >= $day->everyDay()){//もし日付が過ぎたら
-            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">受付終了</p>';//多分ここに受付終了入ると思う
+            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">受付終了</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }else {
             $html[] = $day->selectPart($day->everyDay());//無ければ普通のプルダウン表示
@@ -87,14 +87,6 @@ class CalendarView{
     $html[] = '</tbody>';
     $html[] = '</table>';
     $html[] = '</div>';
-
-    // モーダル/////////////////
-    $html[] =' <div class="delete_modal delete_modal_content" name="delete_modal">';
-    $html[] =  '<p class="m-auto p-0 w-75" style="font-size:12px" id="delete_day"></p>';
-    $html[] =  '<p class="m-auto p-0 w-75 delete_part" style="font-size:12px id="delete_part""></p>';
-    $html[] ='<button class="js-modal-close">閉じる</button>';
-    $html[] ='</div>';
-    // モーダル/////////////////
     $html[] = '<form action="/reserve/calendar" method="post" id="reserveParts">'.csrf_field().'</form>';
     $html[] = '<form action="/delete/calendar" method="post" id="deleteParts">'.csrf_field().'</form>';
 

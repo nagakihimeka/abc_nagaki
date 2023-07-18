@@ -45,4 +45,13 @@ class CalendarsController extends Controller
         }
         return redirect()->route('calendar.admin.setting', ['user_id' => Auth::id()]);
     }
+
+    public function detail($id) {
+        $reserve = ReserveSettings::where('id',$id)->first();
+        $users = User::whereHas('reserveSettings',function($query) use ($id){
+        $query->where('reserve_setting_id',$id);})->get();
+
+
+        return view('authenticated.calendar.admin.detail',compact('users','reserve'));
+    }
 }

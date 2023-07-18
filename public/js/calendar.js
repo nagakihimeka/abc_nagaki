@@ -7,11 +7,11 @@ $(function () {
 
     //日付取得
     var title = $(this).val();
-    $("#delete_day").text(title);
+    $("#delete_day").val(title);
 
+    //部数と場所取得
     var result = $(this).data('part');
-    console.log(result);
-    $(".delete_part").text(result);
+    $("#delete_part").val(result);
     return false;
   });
 
