@@ -294,3 +294,44 @@ details[open] summary::after {
 
   display: flex;
 }
+
+
+/* ////////////reserve_detail///////// */
+.reserve_detail {
+  margin-top: 100px;
+}
+
+.reserve_date {
+
+}
+
+.reserve_table {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.reserve_table table {
+  width: 100%;
+  text-align: center;
+}
+
+.reserve_users {
+  background: #03AAD2;
+  width: 100%;
+  margin: 40px;
+  color: #fff;
+}
+
+.reserve_table td {
+  padding: 10px 0;
+}
+
+.reserve_table tr:nth-child(2n+1) td {
+  background: #E0FFFF;
+
+}
+
+.reserve_user {
+
+}
