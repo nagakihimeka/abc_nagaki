@@ -5,7 +5,6 @@
   <div class="w-100">
     <p>{{ $calendar->getTitle() }}</p>
     <p>{!! $calendar->render() !!}</p>
-    む
   </div>
 </div>
 @endsection
