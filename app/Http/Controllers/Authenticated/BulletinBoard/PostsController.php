@@ -27,6 +27,7 @@ class PostsController extends Controller
         $post_comment = new Post;
         $sub = User::with('subjects')->get();
         $subjects = Subjects::get();
+        $mains = MainCategory::with('subCategories')->get();
 
 
 
@@ -51,6 +52,7 @@ class PostsController extends Controller
             $posts = Post::WhereHas('subCategories', function($query) use ($sub_category){
             $query->where('sub_category_id', $sub_category);
              })->get();
+       
         }else if($request->like_posts){
             $likes = Auth::user()->likePostId()->get('like_post_id');
             $posts = Post::with('user', 'postComments')
@@ -61,11 +63,13 @@ class PostsController extends Controller
         }
 
 
-        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment','sub_categories','sub','subjects'));
+        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment','sub_categories','sub','subjects','mains'));
     }
 
     public function postDetail($post_id){
-        $post = Post::with('user', 'postComments')->findOrFail($post_id);
+        $post = Post::with('user', 'postComments','subCategories')->findOrFail($post_id);
+
+
         return view('authenticated.bulletinboard.post_detail', compact('post'));
     }
 

@@ -25,4 +25,10 @@ $(function () {
 });
 
 
-
+$(function () {
+  $('.post_main_category').click(function () {
+    $(this).next('.post_category_inner').slideToggle();
+    //icon
+    $(this).find(".search_close").toggleClass('search_open');
+  });
+});

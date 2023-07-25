@@ -12,11 +12,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Oswald:wght@200&display=swap" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
-<body>
+<body class="all_content">
 
   <form action="{{ route('registerPost') }}" method="POST">
     <div class="w-100 vh-100 d-flex" style="align-items:center; justify-content:center;">
-      <div class="w-25 vh-75 border p-3">
+      <div class="sha-999 w-25 vh-75 border p-3 register_box">
         <div class="register_form">
 
           <div class="mt-3">
@@ -85,18 +85,18 @@
         </div>
 
 
-        <div class="mt-3">
+        <div class="mt-3 sex">
         <!-- エラーメッセージ -->
             @if($errors->first('sex'))
               <p  class="error_message">{{ $errors->first('sex') }}</p>
             @endif
         <!-- /エラーメッセージ -->
-          <input type="radio" name="sex" class="sex" value="1">
-          <label style="font-size:13px">男性</label>
-          <input type="radio" name="sex" class="sex" value="2">
-          <label style="font-size:13px">女性</label>
-          <input type="radio" name="sex" class="sex" value="3">
-          <label style="font-size:13px">その他</label>
+
+          <label class="label_sex" style="font-size:13px">
+          <input type="radio" name="sex" class="sex" value="1">男性</label>
+          <label class="label_sex" style="font-size:13px"><input type="radio" name="sex" class="sex" value="2">
+          女性</label>
+          <label class="label_sex" style="font-size:13px"><input type="radio" name="sex" class="sex" value="3">その他</label>
         </div>
 
 

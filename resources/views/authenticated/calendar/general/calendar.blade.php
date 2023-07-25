@@ -2,15 +2,14 @@
 
 @section('content')
 <div class="vh-100 pt-5" style="background:#ECF1F6;">
-  <div class="border w-75 m-auto pt-5 pb-5" style="border-radius:5px; background:#FFF;">
-    <div class="w-75 m-auto  border" style="border-radius:5px;">
-
-      <p class="text-center">{{ $calendar->getTitle() }}</p>
+  <div class="sha-999 border w-75 m-auto pt-5 pb-5" style="border-radius:5px; background:#FFF;">
+  <p class="text-center">{{ $calendar->getTitle() }}</p>
+    <div class="w-90 m-auto  border" style="border-radius:5px;">
       <div class="">
         {!! $calendar->render() !!}
       </div>
 
-    <div class="text-right w-75 m-auto">
+    <div class="reserve_button text-right  m-auto">
       <input type="submit" class="btn btn-primary" value="予約する" form="reserveParts">
 
     </div>
