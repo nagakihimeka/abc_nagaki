@@ -3,6 +3,7 @@ $(function () {
   // 編集ボタン(class="js-modal-open")が押されたら発火
   $('.btn-danger').on('click', function () {
     // モーダルの中身(class="js-modal")の表示
+    $('.js-modal').fadeIn();
     $('.delete_modal_content').fadeIn();
 
     //日付取得

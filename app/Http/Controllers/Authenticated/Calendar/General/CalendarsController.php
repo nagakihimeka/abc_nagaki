@@ -43,6 +43,7 @@ class CalendarsController extends Controller
 
     public function delete(Request $request) {
         $reserve = User::with('reserveSettings')->first();
+      
 
         $getPart = $request->getPart;
             if($getPart == "リモ1部") {
