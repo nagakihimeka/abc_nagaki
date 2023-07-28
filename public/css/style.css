@@ -221,7 +221,6 @@ li{
   width: 100%;
 }
 
-
 .delete_btn,
 .js-modal-close {
   font-size: 13px;
@@ -230,6 +229,10 @@ li{
   border-radius: 3px;
 }
 
+.delete_btn {
+  background: #dc3545;
+  color: #fff;
+}
 
 .modal__bg{
     background: rgba(0,0,0,0.8);

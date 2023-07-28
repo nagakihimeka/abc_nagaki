@@ -32,7 +32,7 @@
         <p style="font-size:12px">上記の予約をキャンセルしてもよろしいですか？</p>
         <div class="modal_button">
           <button class="btn-primary js-modal-close">閉じる</button>
-          <input type="submit" class="btn-danger delete_btn" value="キャンセル" form="deleteParts">
+          <input type="submit" class="delete_btn" value="キャンセル" form="deleteParts">
         </div>
       </div>
 
