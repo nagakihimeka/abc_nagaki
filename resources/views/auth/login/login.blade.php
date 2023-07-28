@@ -15,7 +15,7 @@
 <body class="all_content login_form">
   <form action="{{ route('loginPost') }}" method="POST">
     <div class="atlas_logo">
-      <img src="image/atlas-black.png" alt="Atlas">
+      <img src="{{asset('image/atlas-black.png')}}" alt="Atlas">
     </div>
     <div class="w-100 d-flex login_box" style="align-items:center; justify-content:center;">
       <div class="border vh-50 w-25 login">

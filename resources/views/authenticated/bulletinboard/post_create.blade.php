@@ -63,8 +63,8 @@
             <!-- //エラーメッセージ -->
             <p class="m-0">サブカテゴリー</p>
             <select class="w-100" name="main_category_id" form="subCategoryRequest">
-              @foreach($main_categories as $main_category)
               <option selected>---</option>
+              @foreach($main_categories as $main_category)
               <option value="{{$main_category->id}}" label="{{$main_category->main_category}}"></option>
               @endforeach
           </select>
